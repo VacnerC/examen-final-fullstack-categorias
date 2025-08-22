@@ -48,15 +48,15 @@ Esta es una aplicación web fullstack desarrollada con Laravel (backend) y Angul
 El backend estará disponible en: http://localhost:8000
 
 ### Frontend (Angular)
-Navegar al directorio del frontend:
+1. Navegar al directorio del frontend:
     ```bash
     cd frontend-angular
 
-Instalar dependencias:
+2. Instalar dependencias:
     ```bash
     npm install
 
-Iniciar el servidor de desarrollo:
+3. Iniciar el servidor de desarrollo:
     ```bash
     ng serve
 
