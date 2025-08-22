@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -27,21 +28,26 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // Validar los datos recibidos
-        $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:categories,name'
-        ]);
+{
+    \Log::info('Request received:', $request->all());
+    
+    // Validación simple temporalmente
+    $validated = $request->validate([
+        'name' => 'required|string|max:255'
+    ]);
 
-        // Crear la nueva categoría
-        $category = Category::create($validated);
+    \Log::info('Validation passed:', $validated);
 
-        // Devolver respuesta JSON con la categoría creada
-        return response()->json([
-            'category' => $category,
-            'message' => 'Categoría creada exitosamente'
-        ], Response::HTTP_CREATED);
-    }
+    // Crear la nueva categoría
+    $category = Category::create($validated);
+
+    \Log::info('Category created:', $category->toArray());
+
+    return response()->json([
+        'category' => $category,
+        'message' => 'Categoría creada exitosamente'
+    ], Response::HTTP_CREATED);
+}
 
     /**
      * Display the specified resource.
